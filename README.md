@@ -17,11 +17,19 @@
 	apt-get install rabbitmq-server cc-rabbitmq
 	
 **Setup on Master server (rabbitmqmaster)**
-	
-Both the servers should be having same erlang cookie. Hence, copy erlang cookie from *rabbitmqmaster* to *rabbitmqslave*
 
+* Both the servers should be having same erlang cookie. Hence, copy erlang cookie from *rabbitmqmaster* to *rabbitmqslave*
+        
 	scp /var/lib/rabbitmq/.erlang.cookie <username>@rabbitmqslave:/var/lib/rabbitmq/.erlang.cookie
+* Verify cluster status by running the following command
 
-	
+	rabbitmqctl cluster_status
 
+**Setup on Slave server (rabbitmqslave)**
+
+* Correct the ownership and permission of erlang cookie file
 	
+	chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie
+	chmod 400 /var/lib/rabbitmq/.erlang.cookie
+
+
