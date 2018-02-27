@@ -19,6 +19,7 @@
 **Setup on Master server (rabbitmqmaster)**
 	
 Both the servers should be having same erlang cookie. Hence, copy erlang cookie from *rabbitmqmaster* to *rabbitmqslave*
+
 	scp /var/lib/rabbitmq/.erlang.cookie <username>@rabbitmqslave:/var/lib/rabbitmq/.erlang.cookie
 
 	
