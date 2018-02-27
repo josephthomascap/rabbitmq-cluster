@@ -18,21 +18,21 @@
 	
 **Setup on Master server (rabbitmqmaster)**
 
-* Both the servers should be having same erlang cookie. Hence, copy erlang cookie from *rabbitmqmaster* to *rabbitmqslave*
-        
+<p>Both the servers should be having same erlang cookie. Hence, copy erlang cookie from <i>rabbitmqmaster</i> to <i>rabbitmqslave</i> </p>
+	
 	scp /var/lib/rabbitmq/.erlang.cookie <username>@rabbitmqslave:/var/lib/rabbitmq/.erlang.cookie
-* Verify cluster status by running the following command
+<p>Verify cluster status by running the following command</p>
 	
 	rabbitmqctl cluster_status
 
 **Setup on Slave server (rabbitmqslave)**
 
-* Correct the ownership and permission of erlang cookie file
+<p>Correct the ownership and permission of erlang cookie file</p>
 	
 	chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie  
 	chmod 400 /var/lib/rabbitmq/.erlang.cookie  
 
-* Verify cluster status 
+<p>Verify cluster status <p>
 
 	rabbitmqctl cluster_status 
 	
