@@ -4,15 +4,15 @@
 
 **Prerequisites**
 	
-	* 2 ec2 instances launched inside a private subnet(Will be referred as rabbitmqmaster and rabbitmqslave here after)
-	* m3.large machine (Can select a suitable instance type depending on requirement)
-	* Ubuntu 12.04 OS
+* 2 ec2 instances launched inside a private subnet(Will be referred as rabbitmqmaster and rabbitmqslave here after)
+* m3.large machine (Can select a suitable instance type depending on requirement)
+* Ubuntu 12.04 OS
 	
 
 **Installation**
 
-	* apt-get update
-	* apt-get install service-discovery dirsprepare
-	* apt-get install rabbitmq-server cc-rabbitmq
+	 apt-get update
+	 apt-get install service-discovery dirsprepare
+	 apt-get install rabbitmq-server cc-rabbitmq
 	
 
