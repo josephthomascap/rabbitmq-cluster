@@ -22,14 +22,30 @@
         
 	scp /var/lib/rabbitmq/.erlang.cookie <username>@rabbitmqslave:/var/lib/rabbitmq/.erlang.cookie
 * Verify cluster status by running the following command
-
+	
 	rabbitmqctl cluster_status
 
 **Setup on Slave server (rabbitmqslave)**
 
 * Correct the ownership and permission of erlang cookie file
 	
-	chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie
-	chmod 400 /var/lib/rabbitmq/.erlang.cookie
+	chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie  
+	chmod 400 /var/lib/rabbitmq/.erlang.cookie  
+
+* Verify cluster status 
+
+	rabbitmqctl cluster_status 
+	
+	Result should look something similar to:
+	
+	root@rabbitmqslave:/home/vagrant# rabbitmqctl cluster_status  
+	Cluster status of node rabbit@rabbitmqslave ...  
+	[{nodes,[{disc,[rabbit@rabbitmqslave]}]},  
+ 	{running_nodes,[rabbit@rabbitmqslave]},  
+ 	{cluster_name,<<"rabbit@rabbitmqslave">>},   
+ 	{partitions,[]},  
+ 	{alarms,[{rabbit@rabbitmqslave,[]}]}]  
+	root@rabbitmqslave:/home/vagrant#  
+	
 
 
