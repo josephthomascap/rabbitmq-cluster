@@ -24,6 +24,17 @@
 <p>Verify cluster status by running the following command</p>
 	
 	rabbitmqctl cluster_status
+	
+	Result should look something similar to:
+	
+	root@rabbitmqmaster:/home/vagrant# rabbitmqctl cluster_status
+	Cluster status of node rabbit@rabbitmqmaster ...
+	[{nodes,[{disc,[rabbit@rabbitmqmaster]}]},
+ 	{running_nodes,[rabbit@rabbitmqmaster]},
+ 	{cluster_name,<<"rabbit@rabbitmqmaster">>},
+ 	{partitions,[]},
+ 	{alarms,[{rabbit@rabbitmqmaster,[]}]}]
+	root@rabbitmqmaster:/home/vagrant#	
 
 **Setup on Slave server (rabbitmqslave)**
 
@@ -47,5 +58,33 @@
  	{alarms,[{rabbit@rabbitmqslave,[]}]}]  
 	root@rabbitmqslave:/home/vagrant#  
 	
+<p>Stop running app </p>
+	
+	rabbitmqctl stop_app
+<p>Join slave server to the cluster</p>
+
+	rabbitmqctl join_cluster rabbit@rabbitmqmaster
+	
+	Result should look like:
+	root@rabbitmqslave:/home/vagrant# rabbitmqctl join_cluster rabbit@rabbitmqmaster
+	Clustering node rabbit@rabbitmqslave with rabbit@rabbitmqmaster ...
+	root@rabbitmqslave:/home/vagrant# 
+	
+	
+<p>We are done with Rabbitmq brocker setup :) Both the machines will start sharing users, virtual hosts, queues, exchanges, bindings, and runtime parameters now. However, we need to setup mirroring in order to start sharing the queues. </p>
+
+**Setup Mirroring (High Availability) - On Master node**
+
+<p>The following command will sync all the queues across all nodes:</p>
+	
+	rabbitmqctl set_policy ha-all "" '{"ha-mode":"all","ha-sync-mode":"automatic"}'
+	
+<p>After setting HA poliy on master, you can verify whether it is getting replicated on slave by ruuning following command on <i>rabbitmqslave</i> machine<p>
+	
+	rabbitmqctl list_policies
+	
+	
+
+
 
 
